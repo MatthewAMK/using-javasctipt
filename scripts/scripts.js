@@ -1,4 +1,6 @@
-/****************** YOUR NAME: 
+
+
+/****************** Matthew Koncz: 
 
 The instructions describe the missing logic that is needed; you will translate these into JavaScript in the places indicated.
 
@@ -10,10 +12,8 @@ You are encouraged to use the provided naming convention for ease of review.
 /* create variables to hold the values for modelName and duration */
 
 // INSERT YOUR CODE HERE
-
-
-
-
+let modelName;
+let duration;
 
 /****************** helper function ******************/
 /* create a function called recalculate() which will
@@ -22,11 +22,23 @@ You are encouraged to use the provided naming convention for ease of review.
     - check the value of the modelName variable, and use that to calculate the new total cost:
         e.g. if modelName is currently "XYZ", duration * 100 gives us the new total cost.
         if modelName is currently "CPRG", duration * 213 gives us the new total cost.
-    - set the value of the calculated-cost element's innerHTML to this new value
+    - set the value of the -cost element's innerHTML to this new value
 */
 
 // INSERT YOUR CODE HERE
 
+function recalculate() {
+    // Get the calculated-cost element
+    let costLabel = document.getElementById("calculated-cost");
+  
+    // Calculate the new total cost based on the model name and duration
+    if (modelName == "XYZ") {
+        costLabel.innerHTML = (duration * 100).toString();
+    } 
+    else if (modelName == "CPRG") {
+        costLabel.innerHTML = (duration * 213).toString();
+    } 
+}
 
 
 
@@ -45,7 +57,29 @@ You are encouraged to use the provided naming convention for ease of review.
     // modelButton.addEventListener("click", changeModel);
 
 // INSERT YOUR CODE HERE
+// Get the "Switch Model" button element
+let modelButton = document.getElementById("model-button");
 
+// Create the changeModel function
+function changeModel() {
+  // Get the model-text element
+  let modelText = document.getElementById("model-text");
+
+  // Check the current value of modelName and update it accordingly
+  if (modelName === "XYZ") {
+    modelName = "CPRG";
+    modelText.innerHTML = "Model CPRG";
+  } else if (modelName === "CPRG") {
+    modelName = "XYZ";
+    modelText.innerHTML = "Model XYZ";
+  }
+
+  // Recalculate the total cost
+  recalculate();
+}
+
+// Attach the changeModel function to the "Switch Model" button
+modelButton.addEventListener("click", changeModel);
 
 
 
@@ -65,5 +99,24 @@ You are encouraged to use the provided naming convention for ease of review.
 
 // INSERT YOUR CODE HERE
 
+let durationButton = document.getElementById("duration-button");
 
+// Create the changeDuration function
+function changeDuration() {
+  // Get the duration-text element
+  let durationText = document.getElementById("duration-text");
+
+  // Prompt the user for a new duration and update the duration variable
+  let newDuration = prompt("Enter a new duration (in hours):");
+  duration = parseFloat(newDuration);
+
+  // Update the duration-text element with the new value
+  durationText.innerHTML = duration;
+
+  // Recalculate the total cost
+  recalculate();
+}
+
+// Attach the changeDuration function to the "Change Duration" button
+durationButton.addEventListener("click", changeDuration);
 
