@@ -12,7 +12,6 @@ You are encouraged to use the provided naming convention for ease of review.
 /* create variables to hold the values for modelName and duration */
 
 // INSERT YOUR CODE HERE
-let modelName;
 let duration;
 
 /****************** helper function ******************/
